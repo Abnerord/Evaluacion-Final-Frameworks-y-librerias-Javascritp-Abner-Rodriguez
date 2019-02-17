@@ -35,4 +35,17 @@ $(document).ready(function () {
     }
 
 
+    function verificacion(){
+        var col1 = $(".col-1").find("img");
+        var col2 = $(".col-2").find("img");
+        var col3 = $(".col-3").find("img");
+        var col4 = $(".col-4").find("img");
+        var col5 = $(".col-5").find("img");
+        var col6 = $(".col-6").find("img");
+        var col7 = $(".col-7").find("img");
+
+        
+    }
+
+
 });
