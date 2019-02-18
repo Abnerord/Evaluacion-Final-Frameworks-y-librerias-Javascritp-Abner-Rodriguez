@@ -53,9 +53,9 @@ $(document).ready(function () {
 
 
   function ocultar (){                              //Oculta y borra el panel tablero al pasar los dos minutos 
-    $(".panel-tablero").hide(500);
-    setTimeout(function(){ $(".panel-tablero").remove();}, 600);
-    $(".panel-score").animate({ width: "+=1500"},500);
+    $(".panel-tablero").hide(800);
+    setTimeout(function(){ $(".panel-tablero").remove();}, 850);
+    $(".panel-score").animate({ width: "+=1500"},800);
   }
 
 
