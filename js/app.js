@@ -35,6 +35,13 @@ $(document).ready(function () {
     
     if(texto=="Iniciar"){
         $(this).text("Reinicio");
+        $(function(){
+            $('#timer').startTimer({
+              onComplete: function(){
+              ocultar();
+              }
+            });
+        })
         relleno();
     }else if ( texto == "Reinicio"){
         location.reload();
@@ -44,6 +51,13 @@ $(document).ready(function () {
   });
 
  
+  function ocultar (){
+    $(".panel-tablero").hide(500);
+    setTimeout(function(){ $(".panel-tablero").remove();}, 600);
+    $(".panel-score").animate({ width: "+=1500"},500);
+  }
+
+
 
   function relleno(){
       var aleatorio = Math.floor(Math.random()*(5 - 1)) + 1;
