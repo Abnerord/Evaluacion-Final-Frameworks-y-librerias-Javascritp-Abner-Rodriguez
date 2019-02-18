@@ -16,8 +16,18 @@ $(document).ready(function () {
         );
     }
 
-    $("panel-tablero").sortable();
-    $(".col-1").sortable();
+ 
+
+    $(".col-1",).sortable();
+    $(".col-2").sortable();
+    $(".col-3").sortable();
+    $(".col-4").sortable();
+    $(".col-5").sortable();
+    $(".col-6").sortable();
+    $(".col-7").sortable();
+
+
+    
 
   $(".btn-reinicio").click(function(){
 
@@ -32,6 +42,8 @@ $(document).ready(function () {
     
    
   });
+
+ 
 
   function relleno(){
       var aleatorio = Math.floor(Math.random()*(5 - 1)) + 1;
@@ -146,5 +158,17 @@ $(document).ready(function () {
             
          
 }
+
+$(".panel-tablero").hover(function () { 
+    verificacion();
+});
+
+$(".panel-tablero").mouseup(function () { 
+    valortexto = $("#movimientos-text").text();
+    valornumero = parseInt(valortexto) + 1;
+    $("#movimientos-text").text(valornumero);
+});
+
+
   
 });
