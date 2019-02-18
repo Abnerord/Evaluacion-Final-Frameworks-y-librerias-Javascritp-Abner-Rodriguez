@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    //Esta seccion para cambiar los colores del titulo, realiza funciones recursivas
     $(".main-titulo").animate(
         {color:"#DCFF0E"},500,cambiocolor()
     );
@@ -15,8 +16,8 @@ $(document).ready(function () {
             {color:"#DCFF0E"},500,cambiocolor
         );
     }
-
- 
+    //Final de la seccion de los colores del titulo
+    //Se establece que los items de las columnas sean arrastables entre si 
 
     $(".col-1",).sortable();
     $(".col-2").sortable();
@@ -26,8 +27,8 @@ $(document).ready(function () {
     $(".col-6").sortable();
     $(".col-7").sortable();
 
-
-    
+    //fin de la seccion de las columnas
+    //Se crea las funciones del boton Iniciar
 
   $(".btn-reinicio").click(function(){
 
@@ -36,22 +37,22 @@ $(document).ready(function () {
     if(texto=="Iniciar"){
         $(this).text("Reinicio");
         $(function(){
-            $('#timer').startTimer({
+            $('#timer').startTimer({        //Plugin para el tiempo 
               onComplete: function(){
               ocultar();
               }
             });
         })
         relleno();
-    }else if ( texto == "Reinicio"){
+    }else if ( texto == "Reinicio"){    //carga la pagina de nuevo si ya se pulso una vez el boton de iniciar
         location.reload();
     }
     
    
   });
 
- 
-  function ocultar (){
+
+  function ocultar (){                              //Oculta y borra el panel tablero al pasar los dos minutos 
     $(".panel-tablero").hide(500);
     setTimeout(function(){ $(".panel-tablero").remove();}, 600);
     $(".panel-score").animate({ width: "+=1500"},500);
@@ -59,7 +60,7 @@ $(document).ready(function () {
 
 
 
-  function relleno(){
+  function relleno(){                                                   //Funcion de relleno automatico al comenzar la partida
       var aleatorio = Math.floor(Math.random()*(5 - 1)) + 1;
 
         for(var i=0; i<=7; i++){
@@ -74,7 +75,7 @@ $(document).ready(function () {
        
     }
 
-    function parpadeo(etiqueta){
+    function parpadeo(etiqueta){                    //Funcion para generar la animacion antes de desaparecer los dulce 
         var contar = 0;
         while (contar<4) {
             $(etiqueta).animate(
@@ -91,7 +92,7 @@ $(document).ready(function () {
     }
 
     function verificacion(){
-     
+                                                        //Funcion que verifica la cantidad de dulces en linea, y establece si son 3 o mas, para posteriormente eliminarlos y reemplazarlos
     
         var col1 = $(".col-1").find("img");
         var col2 = $(".col-2").find("img");
@@ -173,11 +174,11 @@ $(document).ready(function () {
          
 }
 
-$(".panel-tablero").hover(function () { 
+$(".panel-tablero").hover(function () {    //Genera la revision de los dulces en linea despues de un movimiento del usuario 
     verificacion();
 });
 
-$(".panel-tablero").mouseup(function () { 
+$(".panel-tablero").mouseup(function () {           //Funcion que cuenta los movimientos del usuario
     valortexto = $("#movimientos-text").text();
     valornumero = parseInt(valortexto) + 1;
     $("#movimientos-text").text(valornumero);
