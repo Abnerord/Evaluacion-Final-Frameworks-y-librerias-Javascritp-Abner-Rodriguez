@@ -17,17 +17,7 @@ $(document).ready(function () {
         );
     }
     //Final de la seccion de los colores del titulo
-    //Se establece que los items de las columnas sean arrastables entre si 
-
-    $(".col-1",).sortable();
-    $(".col-2").sortable();
-    $(".col-3").sortable();
-    $(".col-4").sortable();
-    $(".col-5").sortable();
-    $(".col-6").sortable();
-    $(".col-7").sortable();
-
-    //fin de la seccion de las columnas
+    
     //Se crea las funciones del boton Iniciar
 
   $(".btn-reinicio").click(function(){
@@ -101,8 +91,6 @@ $(document).ready(function () {
         var col5 = $(".col-5").find("img");
         var col6 = $(".col-6").find("img");
         var col7 = $(".col-7").find("img");
-        var valortexto="";
-        var valornumero=0;
         var col = [col1,col2,col3,col4,col5,col6,col7];
       
   
@@ -149,6 +137,49 @@ $(document).ready(function () {
                 pin = pin + borrados.length;
             }
 
+            $(".panel-tablero img").draggable({  revert: "valid" , containment: ".panel-tablero", 
+                drag: function (event,ui) { 
+                   
+                    if (ui.position.top>20 || ui.position.top < -20 ){
+                        $(this).draggable({axis:"y"})
+                    }else if (ui.position.left > 20 || ui.position.left < -20 ){
+                        $(this).draggable({axis:"x"})
+                    }else { $(this).draggable({axis:"x,y"}) }
+
+
+                    
+                    if (ui.position.top > 120){
+                        ui.position.top = 120;
+                    }else if (ui.position.top < -120){
+                        ui.position.top = -120;
+                    }
+
+                    if (ui.position.left > 170){
+                        ui.position.left = 170;
+                    }else if (ui.position.left < -170){
+                        ui.position.left = -170;
+                    }
+                 }
+            });
+            $(".panel-tablero img").droppable({ 
+            drop : function (event,ui) {
+          
+              
+                var src = ui.draggable.attr("src");
+                var id = ui.draggable.attr("id");
+                ui.draggable.attr("src",$(this).attr("src"));
+                $(this).attr("src", src);
+                ui.draggable.attr("id",$(this).attr("id"));
+                $(this).attr("id", id);
+
+                var valortexto = $("#movimientos-text").text();
+                var valornumero = parseInt(valortexto) + 1;
+                $("#movimientos-text").text(valornumero);
+
+                setTimeout(function(){verificacion();},600); 
+            }
+          
+        });
 
             if (pin>0){
                 for(var z=0;z<=7;z++){
@@ -173,16 +204,6 @@ $(document).ready(function () {
             
          
 }
-
-$(".panel-tablero").hover(function () {    //Genera la revision de los dulces en linea despues de un movimiento del usuario 
-    verificacion();
-});
-
-$(".panel-tablero").mouseup(function () {           //Funcion que cuenta los movimientos del usuario
-    valortexto = $("#movimientos-text").text();
-    valornumero = parseInt(valortexto) + 1;
-    $("#movimientos-text").text(valornumero);
-});
 
 
   
